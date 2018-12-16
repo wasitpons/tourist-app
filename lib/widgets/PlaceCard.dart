@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../pages/DetailPage.dart';
 class PlaceCard extends StatelessWidget {
   final String title, imagePath;
   PlaceCard(this.imagePath, this.title);
@@ -8,27 +8,43 @@ class PlaceCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 10.0),
       child: GestureDetector(
-        onTap: () => print('Hello world'),
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DetailPage(this.imagePath, this.title)),
+        ),
         child: Card(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                // leading: Icon(Icons.location_searching),
-                title: Container(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: ClipRRect(
-                    borderRadius: new BorderRadius.circular(10.0),
-                    child: Image.asset(
-                      imagePath,
-                      height: 120.0,
-                      fit: BoxFit.cover,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  // leading: Icon(Icons.location_searching),
+                  title: Container(
+                    padding: EdgeInsets.only(top: 10.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Image.asset(
+                        imagePath,
+                        height: 120.0,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Text(title),
-            ],
+                Container(
+                  margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.blue,
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
