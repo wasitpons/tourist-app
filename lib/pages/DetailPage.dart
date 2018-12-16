@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tourist_helper/widgets/ExpansionBox.dart';
 import 'package:tourist_helper/models/PlacesModel.dart';
 import 'package:tourist_helper/widgets/StarRating.dart';
-
+import 'package:tourist_helper/pages/MapPage.dart';
 class DetailPage extends StatelessWidget {
   final String imagePath, title;
   DetailPage(this.imagePath, this.title);
@@ -34,27 +34,13 @@ class _DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-    SingleChildScrollView(
+    Map data = placesData.getDataByTitle(title);
+    return SingleChildScrollView(
       child: Container (
         child: Column(
           children: <Widget>[
             renderImage(context),
-            renderDetail(this.title),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget renderDetail(title) {
-    Map data = placesData.getDataByTitle(title);
-
-    return Container(
-      child: Center(
-        child: Column(
-          children: <Widget>[
-            renderMapCard(),
+            renderMapCard(context),
             renderCard('สถานที่', data['title'], Icons.place),
             renderCard('เวลาเปิด-ปิด', data['openTime'], Icons.timer),
             renderRatingCard(
@@ -68,26 +54,32 @@ class _DetailPage extends StatelessWidget {
             ),
           ],
         ),
-      )
+      ),
     );
   }
 
-  Widget renderMapCard() {
+  Widget renderMapCard(context) {
     return Center(
-      child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: IconTheme(
-                data: IconThemeData(
-                    color: Colors.blue), 
-                child: Icon(Icons.directions),
+      child: GestureDetector(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyApp()),
+        ),
+        child: Card(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                leading: IconTheme(
+                  data: IconThemeData(
+                      color: Colors.blue), 
+                  child: Icon(Icons.directions),
+                ),
+                title: Text('ค้นหาเส้นทาง'),
+                subtitle: Text('แตะเพื่อเข้าสู่ระบบนำทาง'),
               ),
-              title: Text('ค้นหาเส้นทาง'),
-              subtitle: Text('แตะเพื่อเข้าสู่ระบบนำทาง'),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
