@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AnimateExpanded extends StatefulWidget {
-  final String title;
-  final Widget wrappedWidget;
-  AnimateExpanded(this.title, this.wrappedWidget);
+  final String title, description;
+  AnimateExpanded(this.title, this.description);
   
   @override
   _AnimateExpandedState createState() => _AnimateExpandedState();
@@ -37,7 +36,9 @@ class _AnimateExpandedState extends State<AnimateExpanded> {
               constraints: BoxConstraints(
                 maxWidth: MediaQuery.of(context).size.width - 42,
               ),
-              child: widget.wrappedWidget,
+              child: Text(
+                this._bodyHeight==250.0 ? widget.description : '',
+              ),
             ),
             ],
           ),

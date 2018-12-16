@@ -54,6 +54,7 @@ class _DetailPage extends StatelessWidget {
       child: Center(
         child: Column(
           children: <Widget>[
+            renderMapCard(),
             renderCard('สถานที่', data['title'], Icons.place),
             renderCard('เวลาเปิด-ปิด', data['openTime'], Icons.timer),
             renderRatingCard(
@@ -63,7 +64,7 @@ class _DetailPage extends StatelessWidget {
             ),
             AnimateExpanded(
               'ประวัติความเป็นมา',
-              Text('     ${data['description']}'),
+              '     ${data['description']}',
             ),
           ],
         ),
@@ -71,8 +72,25 @@ class _DetailPage extends StatelessWidget {
     );
   }
 
-  Widget renderDescription() {
-
+  Widget renderMapCard() {
+    return Center(
+      child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              leading: IconTheme(
+                data: IconThemeData(
+                    color: Colors.blue), 
+                child: Icon(Icons.directions),
+              ),
+              title: Text('ค้นหาเส้นทาง'),
+              subtitle: Text('แตะเพื่อเข้าสู่ระบบนำทาง'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget renderCard(title, subtitle, icon) {
