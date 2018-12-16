@@ -63,7 +63,7 @@ class _DetailPage extends StatelessWidget {
       child: GestureDetector(
         onTap: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MyApp()),
+          MaterialPageRoute(builder: (context) => MapPage()),
         ),
         child: Card(
           child: Column(
