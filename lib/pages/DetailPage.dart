@@ -40,7 +40,7 @@ class _DetailPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             renderImage(context),
-            renderMapCard(context),
+            renderMapCard(context, data),
             renderCard('สถานที่', data['title'], Icons.place),
             renderCard('เวลาเปิด-ปิด', data['openTime'], Icons.timer),
             renderRatingCard(
@@ -58,12 +58,12 @@ class _DetailPage extends StatelessWidget {
     );
   }
 
-  Widget renderMapCard(context) {
+  Widget renderMapCard(context, data) {
     return Center(
       child: GestureDetector(
         onTap: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MapPage()),
+          MaterialPageRoute(builder: (context) => MapPage(data)),
         ),
         child: Card(
           child: Column(
