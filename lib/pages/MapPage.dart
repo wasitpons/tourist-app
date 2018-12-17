@@ -51,7 +51,7 @@ class MapPageState extends State<MapPageManageState> {
       mapController.addMarker(MarkerOptions(
         position: LatLng(_lat, _long),
         draggable: false,
-        infoWindowText: InfoWindowText(widget.data['title'], 'Place'))
+        infoWindowText: InfoWindowText('Chulalongkorn', 'Place'))
       ).then(
         (val) {
           mapController.addMarker(MarkerOptions(
@@ -105,7 +105,7 @@ class MapPageState extends State<MapPageManageState> {
                 onMapCreated: _onMapCreated,
                 options: GoogleMapOptions(
                   cameraPosition: CameraPosition(
-                    target: LatLng(_lat, _long),
+                    target: LatLng(_lat + 0.080, _long - 0.080),
                     zoom: 12.0
                   )
                 ),
